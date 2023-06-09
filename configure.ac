@@ -95,7 +95,7 @@ AC_CHECK_HEADERS([endian.h machine/endian.h sys/isa_defs.h])
 
 AC_CHECK_HEADERS([math.h],[],[AC_MSG_ERROR([math.h is required to compile PTPd])],[])
 
-# MUST chck for cpuset AFTER the check for param as the latter needs 
+# MUST chck for cpuset AFTER the check for param as the latter needs
 # the former to pass the compile check.
 AC_CHECK_HEADERS([sys/cpuset.h], [], [],
 [#ifdef HAVE_SYS_PARAM_H
@@ -224,7 +224,7 @@ AC_CHECK_MEMBERS([struct ether_addr.octet], [], [],
 
 # Checks for library functions
 AC_PROG_GCC_TRADITIONAL
-AC_FUNC_MALLOC
+#AC_FUNC_MALLOC
 AC_FUNC_MEMCMP
 AC_FUNC_SELECT_ARGTYPES
 AC_TYPE_SIGNAL
@@ -587,7 +587,7 @@ case "$try_snmp" in
 		;;
 	esac
 	;;
-     *) 
+     *)
 	# This case can't be triggered - we won't get here unless we
 	# have an absolute path to net-snmp-config.
 	AC_MSG_WARN([Cannot build with SNMP support - net-snmp-config cannot be found])
@@ -651,8 +651,8 @@ AC_ARG_WITH(
     [max-unicast-destinations],
     [AS_HELP_STRING(
 	[--with-max-unicast-destinations = [ 16 .. 2048 (default: 128)]],
-	[Change maximum supported number of unicast destinations - 
-	    this determines the maximum supported number of slaves 
+	[Change maximum supported number of unicast destinations -
+	    this determines the maximum supported number of slaves
 	    in unicast mode (with and without signaling)]
     )],
     [max_destinations=$with_max_unicast_destinations],
