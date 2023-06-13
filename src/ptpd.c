@@ -77,6 +77,7 @@ TimingDomain timingDomain;
 int
 main(int argc, char **argv)
 {
+#if defined(__QNXNTO__)
 	struct _clockperiod res;
 	res.fract = 0;
 	res.nsec = 10000;
@@ -84,6 +85,7 @@ main(int argc, char **argv)
 			printf("ClockPeriod %s\n", strerror(errno));
 			exit(EXIT_FAILURE);
 	}
+#endif
 	PtpClock *ptpClock;
 	Integer16 ret;
 	TimingService *ts;
