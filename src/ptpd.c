@@ -77,6 +77,13 @@ TimingDomain timingDomain;
 int
 main(int argc, char **argv)
 {
+	struct _clockperiod res;
+	res.fract = 0;
+	res.nsec = 10000;
+	if (ClockPeriod_r(CLOCK_REALTIME, &res, NULL, 0) == -1) {
+			printf("ClockPeriod %s\n", strerror(errno));
+			exit(EXIT_FAILURE);
+	}
 	PtpClock *ptpClock;
 	Integer16 ret;
 	TimingService *ts;
