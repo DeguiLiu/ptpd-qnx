@@ -767,10 +767,13 @@ adjFreq_wrapper(const RunTimeOpts * rtOpts, PtpClock * ptpClock, double adj)
 
       struct _clockadjust clockadj;
       struct _clockperiod period;
-      if (ClockPeriod (CLOCK_REALTIME, 0, &period, 0) < 0)
+      struct _clockperiod new_period;
+      new_period.fract = 0;
+      new_period.nsec = 10000;
+      if (ClockPeriod (CLOCK_REALTIME, &new_period, &period, 0) < 0)
           return;
 
-	CLAMP(adj,ptpClock->servo.maxOutput);
+	// CLAMP(adj,ptpClock->servo.maxOutput);
 
 	/* adjust clock for the duration of 0.9 clock update period in ticks (so we're done before the next) */
 	clockadj.tick_count = 0.9 * ptpClock->servo.dT * 1E9 / (period.nsec + 0.0);
